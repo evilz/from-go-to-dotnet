@@ -1,0 +1,57 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Mulish:wght@200&family=Poppins:wght@400;700&display=swap');
+
+:root {
+     --r-background-color: #fff;
+    --r-main-font: 'Mulish';
+    --r-main-font-size: 2rem;
+    --r-main-color: #65617d;
+    /*--r-block-margin: #{$blockMargin};
+    --r-heading-margin: #A7D86D; */
+    --r-heading-font: 'Poppins';
+     --r-heading-color: #A7D86D;/*
+    --r-heading-line-height: #{$headingLineHeight};
+    --r-heading-letter-spacing: #{$headingLetterSpacing};*/
+    --r-heading-text-transform: none;
+    /*--r-heading-text-shadow: #{$headingTextShadow};*/
+    --r-heading-font-weight: bold;
+    /*--r-heading1-text-shadow: #{$heading1TextShadow};*/
+    --r-heading1-size: 6rem;
+    --r-heading2-size: 4rem;
+    /*--r-heading3-size: #{$heading3Size};
+    --r-heading4-size: #{$heading4Size};
+    --r-code-font: #{$codeFont};
+    --r-link-color: #{$linkColor};
+    --r-link-color-dark: #{darken($linkColor , 15% )};
+    --r-link-color-hover: #{$linkColorHover};
+    --r-selection-background-color: #{$selectionBackgroundColor};
+    --r-selection-color: #{$selectionColor}; */
+  }
+.reveal .slides{
+  text-align: left;
+}
+
+.reveal .slides p,
+.reveal .slides h1,
+.reveal .slides h2,
+.reveal .slides h3,
+.reveal .slides h4,
+.reveal .slides h5,
+.reveal .slides h6
+{ margin-left: 3rem;
+}
+
+.reveal .logo {
+    height: 1em;
+    display: block;
+    text-align: left;
+    margin: var(--r-block-margin) auto;
+    position: relative;
+    width: 90%;
+}
+
+.reveal .dotnet {
+    background: #512bd4 !important;
+
+    background-color: aquamarine;
+}
