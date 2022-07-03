@@ -14,8 +14,8 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" href="libs/reveal.js/4.1.3/reset.css">
-	<link rel="stylesheet" href="libs/reveal.js/4.1.3/reveal.css">
+	<link rel="stylesheet" href="libs/reveal.js/4.3.1/reset.css">
+	<link rel="stylesheet" href="libs/reveal.js/4.3.1/reveal.css">
 
 	
 	
@@ -27,27 +27,31 @@
 	
 	
 		
-	<link rel="stylesheet" href="libs/reveal.js/4.1.3/plugin/chalkboard/style.css">
+	<link rel="stylesheet" href="libs/reveal.js/4.3.1/plugin/chalkboard/style.css">
 	
 	
 	
-	<link rel="stylesheet" href="libs/styles/tasklist.css">
+	
 
 
 
   <!-- Revealjs Theme -->
   
-  	<link rel="stylesheet" href="libs/reveal.js/4.1.3/theme/black.css" id="theme">
+  	<link rel="stylesheet" href="libs/reveal.js/4.3.1/theme/black.css" id="theme">
   
   
+
+  <link rel="stylesheet" href="libs/styles/tasklist.css">
+	<link rel="stylesheet" href="libs/styles/iota.css">
+	<link rel="stylesheet" href="libs/styles/layout.css">
 
 
   <!-- Revealjs Theme -->
   
-  	<link rel="stylesheet" href="go2dotnet.css">
-  
 
- 
+   <!-- css list -->
+	
+
 </head>
 
 <body>
@@ -63,10 +67,9 @@
 
 
     
-        <section data-background="https://cdn.learnku.com//uploads/communities/sNljssWWQoW6J88O9G37.png" data-background-size="150px" data-background-repeat="no-repeat" data-background-position="85% 50%">
+        <section >
             
-            <!-- .slide: data-background="https://cdn.learnku.com//uploads/communities/sNljssWWQoW6J88O9G37.png" data-background-size="150px" data-background-repeat="no-repeat" data-background-position="85% 50%" -->
-<h1>From Go MicroServices <br/>to C# All in one</h1>
+            <h1>From Go MicroServices <br/>to C# All in one</h1>
 
             </section>
     
@@ -94,9 +97,259 @@
 <li>Dependency injection</li>
 <li>Api Client</li>
 <li>Notification System</li>
+<li>Conclusion</li>
 </ul>
 
             </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2 class="r-fit-text">Why ?</h2>
+<h2 class="r-fit-text">CHANGE SOMETHING WHAT WORKS</h2>
+
+            </section>
+    
+
+
+
+    
+    <section>
+        <section >
+            <ul>
+<li>The application is coded in Golang</li>
+<li>But all origin team members has left</li>
+<li>We try to hire new Go dev</li>
+</ul>
+
+            </section>
+        
+            <section >
+                <h2 class="r-fit-text">Guess what</h2>
+<h2 class="r-fit-text fragment">no candidate in 9 months !</h2>
+
+            </section>
+        
+            <section >
+                <p>Then I took the disition to migrate all the code to C#</p>
+<ul>
+<li>I’m so much better dev in dotnet</li>
+<li>Veepee has a lot good dotnet dev that can ask for mobility</li>
+</ul>
+
+            </section>
+        
+            <section >
+                <h2 class="r-fit-text">RISK</h2>
+<h2 class="r-fit-text">of migration is less thqn having nobody to maintain and make evolution on the code</h2>
+
+            </section>
+        
+
+    </section>
+    
+
+
+
+    
+    <section>
+        <section >
+            <h2 class="r-fit-text">HOW ?</h2>
+<h2 class="r-fit-text">Fresh new team and 3 months</h2>
+
+            </section>
+        
+            <section >
+                <h1>Team</h1>
+<ul>
+<li>Onur : The Junior “I have a question”</li>
+<li>Eduardo : The Senior “It makes sense”</li>
+<li>Vincent : The Lead “I’m pretty sure”</li>
+</ul>
+
+            </section>
+        
+            <section >
+                <p>Where to start ?</p>
+<p>The go code is not so bad almost easy to understand and recode 1 for 1.</p>
+
+            </section>
+        
+            <section >
+                <p>Where to start ?</p>
+<ul>
+<li>Bottom -&gt; up or Up -&gt; down</li>
+<li>By microservice ?</li>
+</ul>
+
+            </section>
+        
+            <section >
+                <p>We plan to do it by service in a way bottom-&gt;up.
+But we discovered a big mess of services dependencies</p>
+
+            </section>
+        
+            <section >
+                <p>meme here</p>
+
+            </section>
+        
+            <section >
+                <p>After few time we have started everything and finished nothing.
+So I created a markdown file to list every function to port.</p>
+<p>SCREEN SHOT HERE</p>
+
+            </section>
+        
+            <section >
+                <p>The GQL became the contract and Front the test interface.</p>
+<ul>
+<li>We add some tests : unit and integration and E2E</li>
+<li>We already have automated test from QA (thank to Christopher)</li>
+</ul>
+
+            </section>
+        
+
+    </section>
+    
+
+
+
+    
+    <section>
+        <section >
+            <h2 class="r-fit-text">Architecture <br />changes</h2>
+
+            </section>
+        
+            <section >
+                <p>Make it Simple as stupid</p>
+<ul>
+<li>no more microservices</li>
+<li>no more GRPC</li>
+<li>no more kafka (for internal notification)</li>
+<li>Embeded front</li>
+</ul>
+
+            </section>
+        
+            <section >
+                <h2>All in one !</h2>
+<h2>Some calls this “monolith”, I call this application</h2>
+
+            </section>
+        
+
+    </section>
+    
+
+
+
+    
+    <section>
+        <section >
+            <h2>Code Changes</h2>
+<h2>Golang to C#</h2>
+
+            </section>
+        
+            <section >
+                <h2>Strong typing</h2>
+
+            </section>
+        
+            <section >
+                <h3>Avoid primitive obsession</h3>
+<ul>
+<li>to many string in go</li>
+</ul>
+<p>–</p>
+<p>.NET has Guid</p>
+<p>TODO : put exemple here</p>
+
+            </section>
+        
+            <section >
+                <p>C# has Enum</p>
+<p>TODO : put exemple here</p>
+
+            </section>
+        
+            <section >
+                <p>.NET has cultureinfo</p>
+<p>TODO : put exemple here</p>
+
+            </section>
+        
+            <section >
+                <p>.NET has generic</p>
+<p>TODO : put exemple here</p>
+
+            </section>
+        
+            <section >
+                <h2>Less loop for everything</h2>
+
+            </section>
+        
+            <section >
+                <p>.NET has LINQ</p>
+<p>TODO : put exemple here</p>
+
+            </section>
+        
+            <section >
+                <p>.NET has hasset</p>
+<p>TODO : put exemple here</p>
+
+            </section>
+        
+            <section >
+                <h2>One line is enaught</h2>
+
+            </section>
+        
+            <section >
+                <p>.NET has Lambda and Expression body</p>
+<p>TODO : put exemple here</p>
+
+            </section>
+        
+            <section >
+                <h2>Asynchronous/Concurrent/Parallel</h2>
+<p>Is Go routine really easy ?
+not so sure in long term.</p>
+
+            </section>
+        
+            <section >
+                <p>Go go routine</p>
+
+            </section>
+        
+            <section >
+                <p>C# task</p>
+<p>Easy to make paralellism</p>
+<ul>
+<li>Code changes
+<ul>
+<li>Strong Typing</li>
+<li>Less loop</li>
+<li>One liner</li>
+<li>Asynchronous/Concurrent/Parallel</li>
+</ul>
+</li>
+</ul>
+
+            </section>
+        
+
+    </section>
     
 
 
@@ -459,6 +712,32 @@ defer track.Time(ctx, uc.logger, time.Now(), fmt.Sprintf(“Get group_by for %d 
     
 
 
+
+    
+    <section>
+        <section >
+            <h2>Conclusion</h2>
+
+            </section>
+        
+            <section >
+                <h3>it’s possible</h3>
+<p>–</p>
+<h2>What’s next</h2>
+<ul>
+<li>we still need to do a lot of clean code</li>
+<li>Create a strong Domain model</li>
+<li>Continue to use (domain)Events</li>
+<li>Be more like Elm archi and Onion Archi</li>
+</ul>
+
+            </section>
+        
+
+    </section>
+    
+
+
     </div>
 
 
@@ -498,6 +777,7 @@ defer track.Time(ctx, uc.logger, time.Now(), fmt.Sprintf(“Get group_by for %d 
 	<script src="libs/reveal.js/4.1.3/plugin/chart/chart.min.js"></script>
 	<script src="libs/reveal.js/4.1.3/plugin/chart/plugin.js"></script>
 
+<script src="libs/reveal.js/4.1.3/plugin/verticator/verticator.js"></script>
   <script>
 
 		const printPlugins = [
@@ -523,6 +803,7 @@ defer track.Time(ctx, uc.logger, time.Now(), fmt.Sprintf(“Get group_by for %d 
 				// poll
 				// question
 				// seminar
+				Verticator 
 				 ]
 
 

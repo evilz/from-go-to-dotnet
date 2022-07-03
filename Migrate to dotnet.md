@@ -3,12 +3,10 @@ title: from Go to Dotnet (c#)
 theme: black
 highlightTheme: github-dark-dimmed
 enableMenu: false
-customTheme : "go2dotnet"
 controls: false
 
 ---
 
-<!-- .slide: data-background="https://cdn.learnku.com//uploads/communities/sNljssWWQoW6J88O9G37.png" data-background-size="150px" data-background-repeat="no-repeat" data-background-position="85% 50%" -->
 
 # From Go MicroServices <br/>to C# All in one
 
@@ -29,7 +27,192 @@ controls: false
 - Dependency injection
 - Api Client
 - Notification System
+- Conclusion
 
+---
+
+## Why ? {.r-fit-text}
+## CHANGE SOMETHING WHAT WORKS {.r-fit-text}
+
+---
+
+- The application is coded in Golang
+- But all origin team members has left
+- We try to hire new Go dev
+
+--
+
+## Guess what {.r-fit-text}
+## no candidate in 9 months ! {.r-fit-text .fragment}
+
+--
+
+Then I took the disition to migrate all the code to C#
+
+- I'm so much better dev in dotnet
+- Veepee has a lot good dotnet dev that can ask for mobility
+
+--
+
+## RISK{.r-fit-text}
+## of migration is less thqn having nobody to maintain and make evolution on the code{.r-fit-text}
+
+---
+
+## HOW ?{.r-fit-text}
+## Fresh new team and 3 months{.r-fit-text}
+
+--
+
+# Team
+
+- Onur : The Junior "I have a question"
+- Eduardo : The Senior "It makes sense"
+- Vincent : The Lead "I'm pretty sure"
+
+--
+
+
+Where to start ?
+
+The go code is not so bad almost easy to understand and recode 1 for 1.
+
+--
+
+Where to start ?
+
+- Bottom -> up or Up -> down 
+- By microservice ?
+
+--
+
+
+We plan to do it by service in a way bottom->up.
+But we discovered a big mess of services dependencies
+
+--
+
+meme here
+
+--
+
+After few time we have started everything and finished nothing.
+So I created a markdown file to list every function to port.
+
+SCREEN SHOT HERE
+
+--
+
+The GQL became the contract and Front the test interface.
+
+- We add some tests : unit and integration and E2E
+- We already have automated test from QA (thank to Christopher)
+
+---
+
+## Architecture <br />changes{.r-fit-text}
+
+--
+
+Make it Simple as stupid
+- no more microservices
+- no more GRPC
+- no more kafka (for internal notification)
+- Embeded front 
+
+--
+
+## All in one !
+## Some calls this "monolith", I call this application
+
+---
+
+## Code Changes
+## Golang to C#
+
+--
+
+## Strong typing
+
+--
+
+### Avoid primitive obsession
+
+- to many string in go 
+
+-- 
+
+.NET has Guid
+
+TODO : put exemple here 
+
+--
+
+C# has Enum
+
+TODO : put exemple here 
+
+--
+
+.NET has cultureinfo 
+
+TODO : put exemple here 
+
+--
+
+.NET has generic
+
+TODO : put exemple here 
+
+
+--
+
+## Less loop for everything
+
+--
+
+.NET has LINQ
+
+TODO : put exemple here 
+
+--
+
+.NET has hasset 
+
+TODO : put exemple here 
+
+--
+
+## One line is enaught
+
+--
+
+.NET has Lambda and Expression body
+
+TODO : put exemple here 
+
+--
+
+## Asynchronous/Concurrent/Parallel
+
+Is Go routine really easy ?
+not so sure in long term.
+
+--
+
+Go go routine
+
+--
+
+C# task
+
+Easy to make paralellism
+
+- Code changes
+	- Strong Typing
+	- Less loop
+	- One liner
+	- Asynchronous/Concurrent/Parallel
 
 ---
 
@@ -329,3 +512,22 @@ TODO
        defer track.Time(ctx, uc.logger, time.Now(), fmt.Sprintf("Get group_by for %d NGP codes", len(ngpCodes)))
 
 - Notofication
+
+
+
+---
+
+## Conclusion
+
+--
+
+### it's possible
+
+-- 
+
+## What's next
+
+- we still need to do a lot of clean code
+- Create a strong Domain model
+- Continue to use (domain)Events
+- Be more like Elm archi and Onion Archi
