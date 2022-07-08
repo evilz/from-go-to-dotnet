@@ -1,27 +1,61 @@
 ---
+logoImg: veepee.png
 title: from Go to Dotnet (c#)
-theme: black
+theme: robot-lung
+customTheme: go2dotnet
 highlightTheme: github-dark-dimmed
 enableMenu: false
 controls: false
+margin: 0.09
+css:
+ - https://unpkg.com/@primer/css@^19.0.0/dist/primer.css
 
 ---
 
+# From GO MicroServices <br/>to C# All in one
 
-# From Go MicroServices <br/>to C# All in one
+<div class="grid" style="--cols-xl: 2;">
+
+![](PngItem_4242405.png){style=height:180px}
+
+![](dotnet-surf.png){style=height:200px}
+
+<grid>
 
 ---
 
-## Plan
+# About me
+
+<div class="grid" style="--cols-xl: 2;">
+<div>
+
+**Vincent Bourdon**
+
+Lead dev SMAC
+
+Dev .NET depuis 2001
+
+</div>
+<img class="avatar" alt="vincent" src="Vincent4.gif" width="250" height="250" />
+
+<grid>
+
+---
+
+# Plan
+
+<div class="grid" style="--cols-xl: 2;">
+<div>
 
 - Why ?
 - How ?
 - Architecture changes
 - Code changes
-	- Strong Typing
-	- Less loop
-	- One liner
-	- Asynchronous/Concurrent/Parallel
+
+</div>
+
+<div>
+
 - GraphQL
 - Data Access Layer
 - Dependency injection
@@ -29,138 +63,258 @@ controls: false
 - Notification System
 - Conclusion
 
----
-
-## Why ? {.r-fit-text}
-## CHANGE SOMETHING WHAT WORKS {.r-fit-text}
+</div> 
+</div>
 
 ---
 
-- The application is coded in Golang
-- But all origin team members has left
-- We try to hire new Go dev
+<!-- .slide: data-state="layout-bg50r" data-background-image="https://www.meme-arsenal.com/memes/d144a9109c5f5d18e37788f768fc6f95.jpg" -->
 
---
+# Why ?
+#### CHANGE SOMETHING THAT WORKS 
+---
 
-## Guess what {.r-fit-text}
-## no candidate in 9 months ! {.r-fit-text .fragment}
+<!-- .slide: data-state="layout-bg50r" data-background-image="gopher10th-large.jpg" -->
 
---
+- The app is coded in Golang
 
-Then I took the disition to migrate all the code to C#
+- But all the original team members are gone
 
-- I'm so much better dev in dotnet
-- Veepee has a lot good dotnet dev that can ask for mobility
-
---
-
-## RISK{.r-fit-text}
-## of migration is less thqn having nobody to maintain and make evolution on the code{.r-fit-text}
+- We tried to hire new Go developers
 
 ---
 
-## HOW ?{.r-fit-text}
-## Fresh new team and 3 months{.r-fit-text}
+# Guess what ! {.r-fit-text}
+
+---
+
+## no candidate in 9 months ! {.r-fit-text}
+
+
+---
+
+<!-- .slide: data-background-image="https://i.kym-cdn.com/photos/images/original/001/042/619/4ea.jpg" -->
+
+---
+
+**Then I took the decision to migrate all the code to C#**
+
+
+I'm so much better dev in .NET
+
+Veepee has a lot good .NET dev that can ask for mobility
 
 --
 
-# Team
+## RISK
+of migration is less than having nobody to maintain and make evolution on the code
 
-- Onur : The Junior "I have a question"
-- Eduardo : The Senior "It makes sense"
-- Vincent : The Lead "I'm pretty sure"
+---
+
+## HOW ?
+Fresh new team and 3 months
+
+--
+
+# The Team
+
+<div class="grid" style="--cols-xl: 3;">
+
+:::
+<img class="avatar" alt="onur" src="onur.jpg" width="250" height="250" />
+<b>Onur</b>
+<br>The Junior 
+<br/><i style="font-size:15px">"I have a question"</i>
+:::
+
+:::
+<img class="avatar" alt="onur" src="eduardo.jpg" width="250" height="250" />
+<b>Eduardo</b>
+<br>The Senior
+<br/><i style="font-size:15px">"It makes sense"</i>
+:::
+
+:::
+<img class="avatar" alt="onur" src="vincent.jpg" width="250" height="250" />
+<b>Vincent</b>
+<br>The Lead
+<br/><i style="font-size:15px">"I'm pretty sure"</i>
+:::
+
+</div>
 
 --
 
 
-Where to start ?
+# Where to start ?
 
-The go code is not so bad almost easy to understand and recode 1 for 1.
-
---
-
-Where to start ?
-
-- Bottom -> up or Up -> down 
-- By microservice ?
+The go code is not bad and we should be able to recode 1 for 1.
 
 --
 
+# Where to start ?
+
+Bottom / up or Top / down ?  
+By microservice ?  🤔
+
+
+--
 
 We plan to do it by service in a way bottom->up.
-But we discovered a big mess of services dependencies
 
---
-
-meme here
-
---
-
-After few time we have started everything and finished nothing.
-So I created a markdown file to list every function to port.
-
-SCREEN SHOT HERE
-
---
-
-The GQL became the contract and Front the test interface.
-
-- We add some tests : unit and integration and E2E
-- We already have automated test from QA (thank to Christopher)
+But we discovered a big **mess of services dependencies**
 
 ---
 
-## Architecture <br />changes{.r-fit-text}
+<!-- .slide: data-state="layout-bg50r" data-background-image="spagetti.jpg" -->
+
+*Spaghetti* 
+*Oriented* 
+*Architecture* 
 
 --
 
-Make it Simple as stupid
-- no more microservices
-- no more GRPC
-- no more kafka (for internal notification)
-- Embeded front 
+**After few time we have started everything and finished nothing.**
+
+So I created a markdown file listing all functions to port.
+
+![](migration-state.png) {.border .color-shadow-medium}
 
 --
 
-## All in one !
-## Some calls this "monolith", I call this application
+# How we test ?
+
+**GraphQL as a contract**
+
+**And Frontend as test interface.**
+<br/>
+<br/>
+***
+
+We add some tests : unit and integration and E2E
+
+And we already have automated test from QA
+
+*(thank to Christopher)*
 
 ---
 
-## Code Changes
-## Golang to C#
+# Architecture changes
 
 --
 
-## Strong typing
+## Make it Simple as stupid
+- no more microservices 😮
+- no more GRPC 🤨
+- no more kafka (for internal notification) 😶
+- Embeded frontend 
 
 --
 
-### Avoid primitive obsession
+# All in one !
+Some calls this "monolith", I call this **application**
 
-- to many string in go 
+![](mic-drop.gif)
 
--- 
 
-.NET has Guid
+---
+
+# Less Waste
+
+Each service has redundancy on two DC =>  4 pods by micro-service
+
+Then need load balancing, configuration, monitoring, alerting, logging ...
+
+---
+
+# C2 model
+
+![](SMAC%20dependency%20graph%20-%20C2%20model.png){style=height:15em}
+
+---
+
+# Kub infra
+
+![](Smac-prod-old.png){style=width:81em}
+
+
+---
+
+# Waste infra
+
+![](waste-before.png)
+---
+
+SCREESHOT OF ARCHI NOW
+
+
+---
+
+SCREESHOT OF WASTE NOW
+
+
+---
+
+# Code Changes
+
+<img src="Go_logo_aqua.png" height=25 style="margin: 0 15px">    to <img src="dotnet.png" height=25 style="margin: 0 15px"> 
+
+--
+
+# What about typing ?
+
+
+--
+
+<!-- .slide: data-state="layout-bg50r" data-background-image="dribbble-machucado1.webp" -->
+
+**Avoid primitive obsession**
+
+So many string everywhere 🥵
+
+--
+
+<img src="dotnet.png" height=25 style="margin: 0 15px">has **Guid**
 
 TODO : put exemple here 
 
 --
 
-C# has Enum
+<img src="dotnet.png" height=25 style="margin: 0 15px">has **Enum**
 
-TODO : put exemple here 
+`ENUM with JsonStringEnumConverter 💖`
+
+```csharp
+/// List of handled language
+public enum Languages { da, de, en, es, fr, it, nl, pl }
+
+/// List of handled countries
+public enum CountryCode { AT, BE, CH, DE, DK, ES, FR, GB, IT, LU, NL, PL }
+```
 
 --
 
-.NET has cultureinfo 
+<img src="dotnet.png" height=25 style="margin: 0 15px">has **cultureinfo**
 
-TODO : put exemple here 
+```csharp
+var cultures = languages // string[]
+    .Select(x => 
+        x.ParseLanguage() // enum (validated input)
+        .GetCulture() // cultureInfo
+    );
+```
 
 --
 
-.NET has generic
+<img src="Go_logo_aqua.png" height=25 style="margin: 0 15px"> Use a lot of empty interfaces
+
+```go
+interface{} // can be any thing. Really ?
+```
+
+--
+
+<img src="dotnet.png" height=25 style="margin: 0 15px">has **generic**
 
 TODO : put exemple here 
 
@@ -168,6 +322,30 @@ TODO : put exemple here
 --
 
 ## Less loop for everything
+
+
+
+<img src="Go_logo_aqua.png" height=25 style="margin: 0 15px" />
+
+```go
+emptyTmpl := true
+for _, t := range template {
+	if t.Sections != nil && len(t.Sections) > 0 {
+		emptyTmpl = false
+		break
+	}
+}
+```
+
+<img src="dotnet.png" height=25 style="margin: 0 15px">
+
+```csharp
+var emptyTmpl = !template.Any(t => t.Value.Any());
+```
+
+`(value is sections in the map)`
+
+--
 
 --
 
