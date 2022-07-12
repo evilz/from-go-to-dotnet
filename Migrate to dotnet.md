@@ -4,9 +4,10 @@ title: from Go to Dotnet (c#)
 theme: robot-lung
 customTheme: go2dotnet
 highlightTheme: github-dark-dimmed
-enableMenu: false
+enableMenu: true
 controls: false
 margin: 0.09
+width: 1080
 css:
  - https://unpkg.com/@primer/css@^19.0.0/dist/primer.css
 
@@ -36,8 +37,10 @@ Lead dev SMAC
 Dev .NET depuis 2001
 
 </div>
-<img class="avatar" alt="vincent" src="Vincent4.gif" width="250" height="250" />
 
+<div class="text-center" >
+<img class="avatar" alt="vincent" src="Vincent4.gif" width="250" height="250" />
+<div>
 <grid>
 
 ---
@@ -104,38 +107,40 @@ I'm so much better dev in .NET
 
 Veepee has a lot good .NET dev that can ask for mobility
 
---
+---
 
 ## RISK
 of migration is less than having nobody to maintain and make evolution on the code
 
 ---
 
+<!-- .slide: data-state="layout-bg50r" data-background-image="old-agence_tous_risques.0.jpg" -->
+
 ## HOW ?
 Fresh new team and 3 months
 
---
+---
 
 # The Team
 
 <div class="grid" style="--cols-xl: 3;">
 
-:::
-<img class="avatar" alt="onur" src="onur.jpg" width="250" height="250" />
+::: {.text-center}
+<img class="avatar" alt="onur" src="onur.jpg" width="250" height="250" /><br>
 <b>Onur</b>
 <br>The Junior 
 <br/><i style="font-size:15px">"I have a question"</i>
 :::
 
-:::
-<img class="avatar" alt="onur" src="eduardo.jpg" width="250" height="250" />
+::: {.text-center}
+<img class="avatar" alt="onur" src="eduardo.jpg" width="250" height="250" /><br>
 <b>Eduardo</b>
 <br>The Senior
 <br/><i style="font-size:15px">"It makes sense"</i>
 :::
 
-:::
-<img class="avatar" alt="onur" src="vincent.jpg" width="250" height="250" />
+::: {.text-center}
+<img class="avatar" alt="onur" src="vincent.jpg" width="250" height="250" /><br>
 <b>Vincent</b>
 <br>The Lead
 <br/><i style="font-size:15px">"I'm pretty sure"</i>
@@ -143,36 +148,33 @@ Fresh new team and 3 months
 
 </div>
 
---
+---
 
-
-# Where to start ?
+# Current state ?
 
 The go code is not bad and we should be able to recode 1 for 1.
 
---
+---
 
 # Where to start ?
 
-Bottom / up or Top / down ?  
-By microservice ?  🤔
+Bottom / up or Top / down ?{.fragment}
 
+By microservice ?  🤔{.fragment}
 
---
+We plan to do it by **service** in **bottom /up** way.{.fragment}
 
-We plan to do it by service in a way bottom->up.
-
-But we discovered a big **mess of services dependencies**
+But we discovered a big **mess of services dependencies** {.fragment}
 
 ---
 
 <!-- .slide: data-state="layout-bg50r" data-background-image="spagetti.jpg" -->
 
-*Spaghetti* 
-*Oriented* 
-*Architecture* 
+### *Spaghetti* 
+### *Oriented* 
+### *Architecture* 
 
---
+---
 
 **After few time we have started everything and finished nothing.**
 
@@ -180,15 +182,17 @@ So I created a markdown file listing all functions to port.
 
 ![](migration-state.png) {.border .color-shadow-medium}
 
---
+---
 
 # How we test ?
 
-**GraphQL as a contract**
+**GraphQL as a contract**{.fragment}
 
-**And Frontend as test interface.**
+**And Frontend as test interface.**{.fragment}
+
+::: {.fragment}
 <br/>
-<br/>
+
 ***
 
 We add some tests : unit and integration and E2E
@@ -196,20 +200,23 @@ We add some tests : unit and integration and E2E
 And we already have automated test from QA
 
 *(thank to Christopher)*
+:::
 
 ---
 
-# Architecture changes
+<!-- .slide: data-state="layout-bg50r" data-background-image="archi.webp" -->
 
---
+## Architecture changes
+
+---
 
 ## Make it Simple as stupid
-- no more microservices 😮
-- no more GRPC 🤨
-- no more kafka (for internal notification) 😶
-- Embeded frontend 
+- no more microservices 😮{.fragment}
+- no more GRPC 🤨{.fragment}
+- no more kafka (for internal notification) 😶{.fragment}
+- Embeded frontend{.fragment} 
 
---
+---
 
 # All in one !
 Some calls this "monolith", I call this **application**
@@ -221,7 +228,9 @@ Some calls this "monolith", I call this **application**
 
 # Less Waste
 
-Each service has redundancy on two DC =>  4 pods by micro-service
+Each service must be Resilient and have high availability.
+
+So we deploy on two DC twice =>  4 pods by micro-service
 
 Then need load balancing, configuration, monitoring, alerting, logging ...
 
@@ -257,14 +266,14 @@ SCREESHOT OF WASTE NOW
 
 # Code Changes
 
-<img src="Go_logo_aqua.png" height=25 style="margin: 0 15px">    to <img src="dotnet.png" height=25 style="margin: 0 15px"> 
+# <img src="Go_logo_aqua.png" class="v-align-text-bottom" style="height:1em;margin: 0 15px"> to <img src="dotnet.png" class="v-align-text-bottom" style="height:1em;margin: 0 15px"> 
 
---
+---
 
 # What about typing ?
 
 
---
+---
 
 <!-- .slide: data-state="layout-bg50r" data-background-image="dribbble-machucado1.webp" -->
 
@@ -272,266 +281,73 @@ SCREESHOT OF WASTE NOW
 
 So many string everywhere 🥵
 
---
+---
 
-<img src="dotnet.png" height=25 style="margin: 0 15px">has **Guid**
-
-TODO : put exemple here 
-
---
-
-<img src="dotnet.png" height=25 style="margin: 0 15px">has **Enum**
-
-`ENUM with JsonStringEnumConverter 💖`
-
-```csharp
-/// List of handled language
-public enum Languages { da, de, en, es, fr, it, nl, pl }
-
-/// List of handled countries
-public enum CountryCode { AT, BE, CH, DE, DK, ES, FR, GB, IT, LU, NL, PL }
-```
-
---
-
-<img src="dotnet.png" height=25 style="margin: 0 15px">has **cultureinfo**
-
-```csharp
-var cultures = languages // string[]
-    .Select(x => 
-        x.ParseLanguage() // enum (validated input)
-        .GetCulture() // cultureInfo
-    );
-```
-
---
-
-<img src="Go_logo_aqua.png" height=25 style="margin: 0 15px"> Use a lot of empty interfaces
+# <img src="Go_logo_aqua.png"  style="height:.7em; margin: 0 15px"> use string
 
 ```go
-interface{} // can be any thing. Really ?
-```
-
---
-
-<img src="dotnet.png" height=25 style="margin: 0 15px">has **generic**
-
-TODO : put exemple here 
-
-
---
-
-## Less loop for everything
-
-
-
-<img src="Go_logo_aqua.png" height=25 style="margin: 0 15px" />
-
-```go
-emptyTmpl := true
-for _, t := range template {
-	if t.Sections != nil && len(t.Sections) > 0 {
-		emptyTmpl = false
-		break
-	}
+// Usecase represents the sale's usecase interface
+type Usecase interface {
+	CheckRules(ctx context.Context, saleVersionID string, checkTypes []model.CheckRuleType) ([]*model.CheckRule, error)
+	CreateSale(ctx context.Context, sale *model.Sale) (*model.Sale, error)
+	CreateSaleVersion(ctx context.Context, saleID, name, fromVersionID string, isPublish bool) (*model.Version, error)
+	GetSale(ctx context.Context, id string) (*model.Sale, error)
+	GetSaleByVersionID(ctx context.Context, versionID string) (*model.Sale, error)
+	UpdateSale(ctx context.Context, sale *model.Sale) error
+	PublishSaleVersion(ctx context.Context, versionID string) (bool, error)
+	ResetSaleVersion(ctx context.Context, versionID string, scopes []model.ResetScope) (*model.Version, error)
+	NotifyIfSaleReady(ctx context.Context, versionID string) error
+	HandleCampaignDateChanges(ctx context.Context, campaignCode string, channels []common_kafka.CampaignChannel) error
 }
-```
 
-<img src="dotnet.png" height=25 style="margin: 0 15px">
-
-```csharp
-var emptyTmpl = !template.Any(t => t.Value.Any());
-```
-
-`(value is sections in the map)`
-
---
-
---
-
-.NET has LINQ
-
-TODO : put exemple here 
-
---
-
-.NET has hasset 
-
-TODO : put exemple here 
-
---
-
-## One line is enaught
-
---
-
-.NET has Lambda and Expression body
-
-TODO : put exemple here 
-
---
-
-## Asynchronous/Concurrent/Parallel
-
-Is Go routine really easy ?
-not so sure in long term.
-
---
-
-Go go routine
-
---
-
-C# task
-
-Easy to make paralellism
-
-- Code changes
-	- Strong Typing
-	- Less loop
-	- One liner
-	- Asynchronous/Concurrent/Parallel
-
----
-
-###### C#
-```csharp
-var cultures = languages // string[]
-    .Select(x => 
-        x.ParseLanguage() // enum (validated input)
-        .GetCulture() // cultureInfo
-    );
 ```
 
 ---
 
-## Primitive Obsession
 
-A lot of `string`
+# <img src="dotnet.png"  style="height:.7em; margin: 0 15px"> got Guid
 
-.NET has  `Guid`
-
---
-
-.NET has  `CultureInfo`
-
-###### GoLang
-```go
-cultures := make([]string, len(languages)) // string[]
-for i, lang := range languages {
-    cultures[i] = commons_language.GetCulture(lang)
+```csharp
+public interface ISaleUsecase
+{
+    Task<CheckRule[]> CheckRules(Guid saleVersionID, CheckRuleType[] checkTypes);
+    Task<Models.Sale> CreateSale(Models.Sale sale);
+    Task<DomainVersion> CreateSaleVersion(string saleID, string name, Guid? fromVersionId, bool isPublish);
+    Task<Models.Sale?> GetSale(string saleID);
+    Task<Models.Sale[]?> GetSales(string[] saleIDs);
+    Task<Models.Sale?> GetSaleByVersionId(Guid versionId);
+    Task<int> UpdateSale(Models.Sale sale);
+    Task<DomainVersion> ResetSaleVersion(Guid versionID, ResetScope[] scopes);
+    Task PublishSaleVersion(Guid versionID);
+    Task NotifyIfSaleReady(Guid versionID);
+    Task NotifyOnSaleCreated(string id, Guid versionId, string name, string campaignCode, CountryCode countryCode);
+    Task HandleCampaignDateChanges(string campaignCode, Channel[] channels);
 }
 ```
 
 ---
 
-<!-- slide: data-background=#512bd4 -->
-
-###### C#
-```csharp
-var cultures = languages // string[]
-    .Select(x => 
-        x.ParseLanguage() // enum (validated input)
-        .GetCulture() // cultureInfo
-    );
-```
-
-
----
-
-
-## No generic so everything is something
-
+# <img src="Go_logo_aqua.png"  style="height:.7em; margin: 0 15px"> use more string !
 ```go
-interface{} // can be any thing. Really ?
-```
-
----
-
-
-# LINQ !
-
-go
-```go
-// As PostgreSQL can't sort based on a custom order, do it in code
-orderedSettings := make([]repository.SettingsRow, 0)
-for _, code := range lineage {
-    if setting, ok := settings[code]; ok {
-        orderedSettings = append(orderedSettings, setting)
-    }
+languageByCountryCode = map[string][]string{
+	"at": {"de"},
+	"be": {"en", "nl", "fr"},
+	"ch": {"fr", "de"},
+	"de": {"de"},
+	"dk": {"da"},
+	"es": {"es"},
+	"fr": {"fr"},
+	"gb": {"en"},
+	"it": {"it"},
+	"lu": {"en", "fr"},
+	"nl": {"en", "nl"},
+	"pl": {"pl"},
 }
 ```
 
-c#
-```csharp
-// As PostgreSQL can't sort based on a custom order, do it in code
-var orderedSettings = lineage.Select(x => settings[x]);
-```
-
---
-
-GO
-```
-emptyTmpl := true
-	for _, t := range template {
-		if t.Sections != nil && len(t.Sections) > 0 {
-			emptyTmpl = false
-			break
-		}
-	}
-```
-
-C#
-```
-var emptyTmpl = !template.Any(t => t.Value.Any());
-```
-(value is sections in the map)
-
---
-
-GO
-```
-// Check if the list to set as group_by is empty
-empty := len(characteristics) == 0
-```
-
-C#
-```
-// Check if the list to set as group_by is empty
-var empty = characteristics.Any();
-```
-
---
-
-make declaration and instantiation on same line must of the time
-
-
 ---
 
-# Expression body
-
-GO
-```
-
-// DeleteNGPSettings deletes an NGP Settings from persistent DB
-func (uc *Usecase) DeleteNGPSettings(ctx context.Context, ngpCode string) error {
-	// Delete NGP Settings from persistent DB
-	if err := uc.repo.DeleteNGPSettings(ctx, ngpCode); err != nil {
-		common_log.Error(ctx, uc.logger, fmt.Sprintf("Error while deleting the ngpsettings %q from persistent database", ngpCode), err)
-		return err
-	}
-	return nil
-}
-
-```
-
-C#
-```csharp
-public Task DeleteNGPSettings(string ngpCode) => _repository.DeleteNGPSettings(ngpCode);
-```
-
-
----
+# <img src="dotnet.png"  style="height:.7em; margin: 0 15px"> got Enum
 
 ENUM with JsonStringEnumConverter 💖
 
@@ -541,72 +357,93 @@ public enum Languages { da, de, en, es, fr, it, nl, pl }
 
 /// List of handled countries
 public enum CountryCode { AT, BE, CH, DE, DK, ES, FR, GB, IT, LU, NL, PL }
+
+public static readonly IDictionary<Languages, string> CultureByLanguage =
+	new Dictionary<Languages, string>
+	{
+		{ Languages.da, "da-DK" },
+		{ Languages.de, "de-DE" },
+		{ Languages.en, "en-GB" },
+		{ Languages.es, "es-ES" },
+		{ Languages.fr, "fr-FR" },
+		{ Languages.it, "it-IT" },
+		{ Languages.nl, "nl-NL" },
+		{ Languages.pl, "pl-PL" }
+	};
+
 ```
 
 ---
 
-# ASYNC all the thing
+# <img src="dotnet.png"  style="height:.7em; margin: 0 15px"> got cultureinfo
 
-async for all IO  (db and HTTP)
-
-
+But we don't use it anymore for this usecase
 
 ---
 
-
-GO
-```
-ngpSettings := resp.GetNgpsettings()
-	res := []*model.Characteristic{}
-	characteristicsMap := make(map[string]struct{})
-	for ngp := range ngpSettings {
-		// Loop through characteristics to prevent duplicates
-		for _, c := range ngpSettings[ngp].GroupBy.Characteristics {
-			if _, ok := characteristicsMap[c.Code]; !ok {
-				characteristicsMap[c.Code] = struct{}{}
-				res = append(res, model.NewCharacteristicFromNGPSettingsClient(c))
-			}
-		}
-	}
+# <img src="Go_logo_aqua.png"  style="height:.7em; margin: 0 15px"> use interface{}
+```go {data-trim data-line-numbers="5"}
+jsonStruct := struct {
+		Code             string            `json:"code"`
+		Name             string            `json:"name"`
+		NameTranslations map[string]string `json:"translations"`
+		Value            interface{}       `json:"value"`  // can be any thing. Really ?
+		ValueCode        string            `json:"valueCode"`
+		Properties       []*Property       `json:"properties"`
+	}{}
 ```
 
-C#
+---
+
+# <img src="dotnet.png"  style="height:.7em; margin: 0 15px">  use generic
+
+```csharp  {data-trim data-line-numbers="|4|14|12"}
+public record Property(
+    string Code,
+    string Name,
+    I18nString NameTranslations,
+    string? Value,
+    I18nString? ValueTranslations,
+    string ValueCode,
+    bool AllowMultiplicity,
+    Property[] Properties
+);
+
+public class I18NObject<T>{}
+
+public class I18nString : I18NObject<string>{}
+```
+
+---
+
+# <img src="Go_logo_aqua.png"  style="height:.7em; margin: 0 15px"> use map with empty value 🤐
+
+```go
+distinctMediaIDs := make(map[string]struct{})
+//....
+distinctMediaIDs[m.ID] = struct{}{}
+```
+
+---
+
+# <img src="dotnet.png"  style="height:.7em; margin: 0 15px"> use HashSet
+
 ```csharp
-var res =ngpSettings.Values
-	.SelectMany(x => x.GroupBy)
-	.DistinctBy(x => x.Code)
-	.ToArray();
+HashSet<string> distinctMediaIDs = new();
+//....
+distinctMediaIDs.Add(m.Id);
 ```
 
 ---
 
+<!-- .slide: data-state="layout-bg50r" data-background-image="gophercises_jumping.gif" -->
+# loop for ever
 
-SWITCH
 
-```go
-var searchBy client_search.SearchCriteria_SearchBy
-switch s := s.SearchBy; s {
-	case SearchByName:
-	searchBy = client_search.SearchCriteria_NAME
-	case SearchByArticleID:
-	searchBy = client_search.SearchCriteria_ARTICLEID
-	case SearchBySku:
-	searchBy = client_search.SearchCriteria_SKU
-	default:
-	searchBy = client_search.SearchCriteria_NONE
-}
-```
 ---
 
-# Map is not a Set  ....
-
---
-
-<!-- slide: data-background=PowderBlue  -->
-
-# ![](go.png) {.logo}
-
-```go
+# <img src="Go_logo_aqua.png"  style="height:.7em; margin: 0 15px"> use for loop everywhere
+```go {data-trim data-line-numbers="|3|9|"}
 func (uc *usecase) GetDistinctNGPCodesFromArticles(ctx context.Context, articles []*model.Article) []string {
 	distinctNGPCodes := make(map[string]struct{})   // <-- struct {}  ???
 	for _, aa := range articles {
@@ -623,13 +460,11 @@ func (uc *usecase) GetDistinctNGPCodesFromArticles(ctx context.Context, articles
 }
 ```
 
---
+---
 
-<!-- slide: data-background=#512bd4 -->
+# <img src="dotnet.png"  style="height:.7em; margin: 0 15px"> got linq
 
-# ![](dotnet.png) {.logo}
-
-```C#
+```csharp
 public string[] GetDistinctNGPCodesFromArticles(Models.Article[] articles) => 
 	articles
 		.Select(x => x.NgpCode)
@@ -637,71 +472,269 @@ public string[] GetDistinctNGPCodesFromArticles(Models.Article[] articles) =>
 		.ToArray();
 ```
 
+*LINQ in go => https://godoc.org/github.com/ahmetb/go-linq* 
 
 ---
 
-### named tuple item
-
+# <img src="Go_logo_aqua.png"  style="height:.7em; margin: 0 15px"> use Tuple
 ```go
 func (uc *usecase) GetLocalizedTemplates(/*..*/) 
  (map[string][]*model.TemplateSection, map[string][]*model.TemplateSection, error) 
  {}
 ```
 
-
 ---
 
-get unique
-```
-// Get all the unique NGP codes from articles
-ngpMap := make(map[string]struct{})
-ngpCodes := []string{}
-for _, a := range resp.Articles {
-	ngpCode := substituteArticleNGPCode(a.CategoryCode, ngpCodeSubstitutions)
-	ngpMap[ngpCode] = struct{}{}
-}
-for k := range ngpMap {
-	ngpCodes = append(ngpCodes, k)
-}
+
+# <img src="dotnet.png"  style="height:.7em; margin: 0 15px"> got named tuple !
+
+```csharp
+(Dictionary<string, TemplateSection[]> sizeLabelTemplates,
+ Dictionary<string, TemplateSection[]> nameTemplates) =
+            await _ngpSettingsUsecase.GetLocalizedTemplates(aggregationNgpCodes, countryCode);
 ```
 
 ---
 
-TODO
 
-- GraphQL the subscriptions 
-	- the code from go is totally weird
-	- the channel, the observer, etcetc
-	- in hotchocolate is, addsubscriptions , addwebsockets, and add the two methods for the - dynamic topic
+# <img src="dotnet.png"  style="height:.7em; margin: 0 15px"> got Expression body
 
-- API CLient  Refit : client api
+Easy to reduce code to one line
+
+```csharp
+public Task<IEnumerable<Models.Sale>> GetAllSalesAsync() => QueryAllAsync<Models.Sale>();
+```
+
+---
+
+<!-- .slide: data-state="layout-bg50r" data-background-image="gorun2.png" -->
+
+# Async
+# Concurrent
+# Parallel
 
 
-- Data Access -> repodb 
-	- and the mappings, we do not have to get,set all the props, only make some custom handlers for especial types
+---
 
-- LINQ in go => https://godoc.org/github.com/ahmetb/go-linq
+> Is Go routine really easy ?
+>
+> not so sure in long term.
 
-- Enum
+---
+
+# <img src="Go_logo_aqua.png"  style="height:.7em; margin: 0 15px"> goroutine for paralism
+```go
+pc := make(chan *Pair, len(inputs))
+// Generate identifier for each input
+for k, i := range inputs {
+
+	// One goroutine per input in order to speed it up
+	go func(key string, meta map[string]string, isRandom bool) {
+		identifier, err := uc.generateIdentifier(ctx, meta, isRandom)
+		if err != nil {
+			ec <- err
+			return
+		}
+
+		pc <- &Pair{
+			Key:   key,
+			Value: identifier,
+		}
+	}(k, i.GetMeta(), i.GetIsRandom())
+}
+```
+
+---
+
+# <img src="dotnet.png"  style="height:.7em; margin: 0 15px"> use Task and TPL
+
+```csharp
+// System.Threading.Tasks.Parallel
+Parallel.ForEachAsync(inputs, async (k, i) => { .... });
+
+// PLINQ
+inputs.AsParallel().Select(x => {....} );
+
+// or create list of task and wait
+await Task.WhenAll(tasks);
+```
 
 
-- IOC
-// Logs the execution time
-       defer track.Time(ctx, uc.logger, time.Now(), fmt.Sprintf("Get group_by for %d NGP codes", len(ngpCodes)))
+---
 
-- Notofication
+# <img src="dotnet.png"  style="height:.7em; margin: 0 15px"> use Task for all I/O
+```csharp
+// DATABASE
+public interface ISaleRepository
+{
+    Task<string> CreateSaleAsync(Models.Sale sale);
+    Task<Models.Sale?> FindSaleAsync(Expression<Func<Models.Sale, bool>> where);
+}
 
+// WEB CLIENT
+public interface IPimClient
+{
+    Task<Product[]?> GetProductsByOperationCodeAsync(string operationCode, string language);
+    Task<Article[]?> GetArticlesAsync(string[] articleIDs);
+    Task<Article[]> BulkGetArticlesAsync(Guid[] articleIDs, bool withTranslations);
+}
+```
+
+---
+
+# Lines of  code
+
+| Language      | Lines of code |
+| ----------- | -----------: |
+| C#      | 18 008      |
+| Go   | 133 768        |
+
+> We save **115 760** LOC it's almost **86.5%** less
+> <br/>*test included
+
+---
+
+# What do we use ?
+
+---
+
+<!-- .slide: data-state="layout-bg50r" data-background-image="hotchocolate.svg" -->
+
+# GraphQL
+
+We should HotChocolate
+
+- Very performent
+- Easy to use 
+- Annotation-based / Code-first / Schema-first 
+- Subscription with WebSocket
+- Awesome with EF core 
+- Banana cupcake
+
+note:
+GraphQL the subscriptions 
+<br/>- the code from go is totally weird
+<br/>- the channel, the observer, etcetc
+<br/>- in hotchocolate is, addsubscriptions , addwebsockets, and add the two methods for the - dynamic topic
+
+---
+
+<!-- .slide: data-fullscreen data-background-image="bananacupcake.png" -->
+
+
+---
+
+# Data Access Layer
+
+We use a ORM : RepoDB
+
+<div class="grid" style="--cols-xl: 3;--cols-md: 3;--cols-xs: 3;">
+
+<div>
+<ul>
+<li>Performant</li>
+<li>easy to use</li>
+<li>Work on many DBMS</li>
+<li>A lot of feature (Bulk/Batch/Caching)</li>
+</ul>
+</div>
+
+<div style="--col-xl: span 2;--col-md: span 2;--col-xs span 2">
+<img src="repodb.svg" >
+</div>
+
+</grid>
+
+---
+
+### I also think about using **EF core**
+
+Cause it is more flexible and have great feature on PG jsonb
+
+![](efcore-pgjson.png)
+
+---
+
+# API client
+
+We use **Refit**
+
+- automatic type-safe REST library
+
+*(Heavily inspired by Square's Retrofit library)*
+
+```csharp
+public record TechnicalSheetsByFamily(int FamilyId, string Ft, string Subject);
+
+public interface ISpotApi
+{
+    [Get("/api/v2/campaigns/events/{site}/technicalSheets/{familyId}")]
+    Task<ApiResponse<TechnicalSheetsByFamily[]>>GetTechnicalSheetsByFamilyIdAndSite(string site, int familyId);
+}
+```
+
+```csharp
+// Program.cs
+builder.Services.AddRefitClient<ISpotApi>(refitSettings).ConfigureHttpClient(c=>
+{
+    c.BaseAddress = new Uri(configuration.GetValue<string>("Spot:Host"));
+    c.DefaultRequestHeaders.Add("apikey", configuration.GetValue<string>("Spot:Apikey"));
+});
+
+
+```
+
+---
+
+# Refit
+
+- Only defined interface
+- Use Source Generator
+- Use Httpclient
+- Easy to configure, add headers and bearer
+
+---
+
+# Notification System
+
+
+We replace **Kafka** by **MediatR**
+
+- In-process messaging with no dependencies.
+- Use generics
+- Very easy to migrate using same message
+
+---
+
+# MediatR 
+
+```csharp
+public class SaleVersionCreatedHandler : INotificationHandler<SaleVersionCreated>
+{
+    private readonly ICatalogUsecase _catalogUsecase;
+
+    public SaleVersionCreatedHandler(ICatalogUsecase catalogUsecase) =>
+		_catalogUsecase = catalogUsecase;
+
+    public Task Handle(SaleVersionCreated notification, ct cancellationToken) =>
+	    _catalogUsecase.CloneCatalogTree(
+			notification.VersionId, 
+			notification.FromVersionId, 
+			notification.IsPublish);
+}
+```
 
 
 ---
 
 ## Conclusion
 
---
+- it's possible 
+- It take times ! 3 months here
+- We know better the code and how SMAC is working
+- Evolution and support should be easier now
 
-### it's possible
-
--- 
+---
 
 ## What's next
 
@@ -709,3 +742,13 @@ TODO
 - Create a strong Domain model
 - Continue to use (domain)Events
 - Be more like Elm archi and Onion Archi
+
+---
+
+# QA 
+
+# 🙋🏻‍♂️🙋🏻‍♀️❔ {.text-center}
+
+---
+
+# THANK
