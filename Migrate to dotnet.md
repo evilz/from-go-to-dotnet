@@ -32,9 +32,9 @@ css:
 
 **Vincent Bourdon**
 
-Lead dev SMAC
+Lead dev of SMAC team
 
-Dev .NET depuis 2001
+Dev .NET since 2001
 
 </div>
 
@@ -61,7 +61,6 @@ Dev .NET depuis 2001
 
 - GraphQL
 - Data Access Layer
-- Dependency injection
 - Api Client
 - Notification System
 - Conclusion
@@ -105,11 +104,11 @@ Dev .NET depuis 2001
 
 I'm so much better dev in .NET
 
-Veepee has a lot good .NET dev that can ask for mobility
+Veepee has a lot of good .NET dev who can ask for mobility
 
 ---
 
-## RISK
+## The RISK
 of migration is less than having nobody to maintain and make evolution on the code
 
 ---
@@ -121,7 +120,7 @@ Fresh new team and 3 months
 
 ---
 
-# The Team
+# The Dev Team
 
 <div class="grid" style="--cols-xl: 3;">
 
@@ -186,20 +185,32 @@ So I created a markdown file listing all functions to port.
 
 # How we test ?
 
-**GraphQL as a contract**{.fragment}
+GraphQL as a contract{.fragment}
 
-**And Frontend as test interface.**{.fragment}
+Frontend as test interface.{.fragment}
+
+We added some tests : unit and integration and E2E{.fragment}
 
 ::: {.fragment}
 <br/>
 
-***
 
-We add some tests : unit and integration and E2E
+<div class=" d-inline-flex">
+  <div class="pr-5">
 
-And we already have automated test from QA
+<p>And we already have automated test (UI and API tests) </p> 
+<p>from Quality Assurance</p>
+<p>Thank <b>Christopher</b> 💘</p>
+</div>
 
-*(thank to Christopher)*
+<img class="avatar" alt="onur" src="Christopher.jpg" width="250" height="250" />
+ 
+</div>
+
+
+<br>
+
+
 :::
 
 ---
@@ -230,7 +241,10 @@ Some calls this "monolith", I call this **application**
 
 Each service must be Resilient and have high availability.
 
-So we deploy on two DC twice =>  4 pods by micro-service
+So we deploy on two Data Center at least twice 
+
+➡️ 4 pods by micro-service ( 9 services )
+
 
 Then need load balancing, configuration, monitoring, alerting, logging ...
 
@@ -239,27 +253,6 @@ Then need load balancing, configuration, monitoring, alerting, logging ...
 # C2 model
 
 ![](SMAC%20dependency%20graph%20-%20C2%20model.png){style=height:15em}
-
----
-
-# Kub infra
-
-![](Smac-prod-old.png){style=width:81em}
-
-
----
-
-# Waste infra
-
-![](waste-before.png)
----
-
-SCREESHOT OF ARCHI NOW
-
-
----
-
-SCREESHOT OF WASTE NOW
 
 
 ---
@@ -301,6 +294,8 @@ type Usecase interface {
 }
 
 ```
+
+*In GO we can use https://github.com/google/uuid*
 
 ---
 
@@ -377,7 +372,7 @@ public static readonly IDictionary<Languages, string> CultureByLanguage =
 
 # <img src="dotnet.png"  style="height:.7em; margin: 0 15px"> got cultureinfo
 
-But we don't use it anymore for this usecase
+*But we don't use it anymore for this usecase*
 
 ---
 
@@ -414,6 +409,8 @@ public class I18NObject<T>{}
 public class I18nString : I18NObject<string>{}
 ```
 
+*Yes, GO has this now...*
+
 ---
 
 # <img src="Go_logo_aqua.png"  style="height:.7em; margin: 0 15px"> use map with empty value 🤐
@@ -434,6 +431,7 @@ HashSet<string> distinctMediaIDs = new();
 distinctMediaIDs.Add(m.Id);
 ```
 
+note: Overlaps, IsSubsetOf , IsSupersetOf 
 ---
 
 <!-- .slide: data-state="layout-bg50r" data-background-image="gophercises_jumping.gif" -->
@@ -516,9 +514,10 @@ public Task<IEnumerable<Models.Sale>> GetAllSalesAsync() => QueryAllAsync<Models
 
 ---
 
-> Is Go routine really easy ?
->
-> not so sure in long term.
+## 🤔 
+## Is Go routine really easy ?
+
+*not so sure in long term.*
 
 ---
 
@@ -586,15 +585,17 @@ public interface IPimClient
 
 | Language      | Lines of code |
 | ----------- | -----------: |
-| C#      | 18 008      |
+| C#      | ~~18 008~~      |
+| C#      | 20 079      |
 | Go   | 133 768        |
 
-> We save **115 760** LOC it's almost **86.5%** less
+> We saved **113 689** LOC 
 > <br/>*test included
 
 ---
 
 # What do we use ?
+Libraries, nuget ...
 
 ---
 
@@ -602,7 +603,7 @@ public interface IPimClient
 
 # GraphQL
 
-We should HotChocolate
+We should **HotChocolate**
 
 - Very performent
 - Easy to use 
@@ -739,9 +740,10 @@ public class SaleVersionCreatedHandler : INotificationHandler<SaleVersionCreated
 ## What's next
 
 - we still need to do a lot of clean code
-- Create a strong Domain model
-- Continue to use (domain)Events
-- Be more like Elm archi and Onion Archi
+- Create a strong Domain model without dependency
+- Continue to use more (domain)Events
+
+yes it's clean architeture 😜
 
 ---
 
