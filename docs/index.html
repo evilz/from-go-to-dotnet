@@ -1,0 +1,1338 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>from Go to Dotnet (c#)</title>
+
+  <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+  <meta name="author" content="Hakim El Hattab">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/reset.css">
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/reveal.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  <!-- highlight Theme -->
+  
+  <link rel="stylesheet" href="libs/highlight.js/11.3.1/styles/github-dark-dimmed.min.css">
+  
+	
+		
+	<link rel="stylesheet" href="libs/reveal.js/4.3.1/plugin/chalkboard/style.css">
+	
+	
+	
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/plugin/customcontrols/style.css">
+  
+	
+
+
+
+  <!-- Revealjs Theme -->
+  
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/theme/robot-lung.css" id="theme">
+  
+  
+
+  <link rel="stylesheet" href="libs/styles/tasklist.css">
+	<link rel="stylesheet" href="libs/styles/iota.css">
+	<link rel="stylesheet" href="libs/styles/layout.css">
+
+
+  <!-- Revealjs Theme -->
+  
+  <link rel="stylesheet" href="go2dotnet.css">
+  
+
+   <!-- css list -->
+	
+  <link rel="stylesheet" href="https://unpkg.com/@primer/css@^19.0.0/dist/primer.css">
+  
+
+   
+
+</head>
+
+<body>
+
+   
+    <div id="logo" style="position: fixed; top: 20px; left: 20px; z-index: 1; height:3rem;">
+        <img src="veepee.png" style="height:100%"/>
+    </div>
+
+
+  <div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+
+      
+
+
+    
+        <section >
+            
+            <h1>From GO MicroServices <br/>to C# All in one</h1>
+<div class="grid" style="--cols-xl: 2;">
+<p><img src="PngItem_4242405.png" alt="" style="height:180px"></p>
+<p><img src="dotnet-surf.png" alt="" style="height:200px"></p>
+<grid>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1>About me</h1>
+<div class="grid" style="--cols-xl: 2;">
+<div>
+<p><strong>Vincent Bourdon</strong></p>
+<p>Lead dev of SMAC team</p>
+<p>Dev .NET since 2001</p>
+</div>
+<div class="text-center" >
+<img class="avatar" alt="vincent" src="Vincent4.gif" width="250" height="250" />
+<div>
+<grid>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1>Plan</h1>
+<div class="grid" style="--cols-xl: 2;">
+<div>
+<ul>
+<li>Why ?</li>
+<li>How ?</li>
+<li>Architecture changes</li>
+<li>Code changes</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>GraphQL</li>
+<li>Data Access Layer</li>
+<li>Api Client</li>
+<li>Notification System</li>
+<li>Conclusion</li>
+</ul>
+</div> 
+</div>
+
+            </section>
+    
+
+
+
+    
+        <section data-state="layout-bg50r" data-background-image="https://www.meme-arsenal.com/memes/d144a9109c5f5d18e37788f768fc6f95.jpg">
+            
+            <!-- .slide: data-state="layout-bg50r" data-background-image="https://www.meme-arsenal.com/memes/d144a9109c5f5d18e37788f768fc6f95.jpg" -->
+<h1>Why ?</h1>
+<h4>CHANGE SOMETHING THAT WORKS</h4>
+
+            </section>
+    
+
+
+
+    
+        <section data-state="layout-bg50r" data-background-image="gopher10th-large.jpg">
+            
+            <!-- .slide: data-state="layout-bg50r" data-background-image="gopher10th-large.jpg" -->
+<ul>
+<li>
+<p>The app is coded in Golang</p>
+</li>
+<li>
+<p>But all the original team members are gone</p>
+</li>
+<li>
+<p>We tried to hire new Go developers</p>
+</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1 class="r-fit-text">Guess what !</h1>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2 class="r-fit-text">no candidate in 9 months !</h2>
+
+            </section>
+    
+
+
+
+    
+        <section data-background-image="https://i.kym-cdn.com/photos/images/original/001/042/619/4ea.jpg">
+            
+            <!-- .slide: data-background-image="https://i.kym-cdn.com/photos/images/original/001/042/619/4ea.jpg" -->
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <p><strong>Then I took the decision to migrate all the code to C#</strong></p>
+<p>I’m so much better dev in .NET</p>
+<p>Veepee has a lot of good .NET dev who can ask for mobility</p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2>The RISK</h2>
+<p>of migration is less than having nobody to maintain and make evolution on the code</p>
+
+            </section>
+    
+
+
+
+    
+        <section data-state="layout-bg50r" data-background-image="old-agence_tous_risques.0.jpg">
+            
+            <!-- .slide: data-state="layout-bg50r" data-background-image="old-agence_tous_risques.0.jpg" -->
+<h2>HOW ?</h2>
+<p>Fresh new team and 3 months</p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1>The Dev Team</h1>
+<div class="grid" style="--cols-xl: 3;">
+<div class="text-center ">
+<p><img class="avatar" alt="onur" src="onur.jpg" width="250" height="250" /><br>
+<b>Onur</b>
+<br>The Junior
+<br/><i style="font-size:15px">“I have a question”</i></p>
+</div>
+<div class="text-center ">
+<p><img class="avatar" alt="onur" src="eduardo.jpg" width="250" height="250" /><br>
+<b>Eduardo</b>
+<br>The Senior
+<br/><i style="font-size:15px">“It makes sense”</i></p>
+</div>
+<div class="text-center ">
+<p><img class="avatar" alt="onur" src="vincent.jpg" width="250" height="250" /><br>
+<b>Vincent</b>
+<br>The Lead
+<br/><i style="font-size:15px">“I’m pretty sure”</i></p>
+</div>
+</div>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1>Current state ?</h1>
+<p>The go code is not bad and we should be able to recode 1 for 1.</p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1>Where to start ?</h1>
+<p class="fragment">Bottom / up or Top / down ?</p>
+<p class="fragment">By microservice ?  🤔</p>
+<p class="fragment">We plan to do it by <strong>service</strong> in <strong>bottom /up</strong> way.</p>
+<p class="fragment">But we discovered a big <strong>mess of services dependencies</strong></p>
+
+            </section>
+    
+
+
+
+    
+        <section data-state="layout-bg50r" data-background-image="spagetti.jpg">
+            
+            <!-- .slide: data-state="layout-bg50r" data-background-image="spagetti.jpg" -->
+<h3><em>Spaghetti</em></h3>
+<h3><em>Oriented</em></h3>
+<h3><em>Architecture</em></h3>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <p><strong>After few time we have started everything and finished nothing.</strong></p>
+<p>So I created a markdown file listing all functions to port.</p>
+<p class="border color-shadow-medium"><img src="migration-state.png" alt=""></p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1>How we test ?</h1>
+<p class="fragment">GraphQL as a contract</p>
+<p class="fragment">Frontend as test interface.</p>
+<p class="fragment">We added some tests : unit and integration and E2E</p>
+<div class="fragment ">
+<br/>
+<div class=" d-inline-flex">
+  <div class="pr-5">
+<p>And we already have automated test (UI and API tests) </p> 
+<p>from Quality Assurance</p>
+<p>Thank <b>Christopher</b> 💘</p>
+</div>
+<img class="avatar" alt="onur" src="Christopher.jpg" width="250" height="250" />
+</div>
+<br>
+</div>
+
+            </section>
+    
+
+
+
+    
+        <section data-state="layout-bg50r" data-background-image="archi.webp">
+            
+            <!-- .slide: data-state="layout-bg50r" data-background-image="archi.webp" -->
+<h2>Architecture changes</h2>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2>Make it Simple as stupid</h2>
+<ul>
+<li class="fragment">no more microservices 😮</li>
+<li class="fragment">no more GRPC 🤨</li>
+<li class="fragment">no more kafka (for internal notification) 😶</li>
+<li class="fragment">Embeded frontend</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1>All in one !</h1>
+<p>Some calls this “monolith”, I call this <strong>application</strong></p>
+<p><img src="mic-drop.gif" alt=""></p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1>Less Waste</h1>
+<p>Each service must be Resilient and have high availability.</p>
+<p>So we deploy on two Data Center at least twice</p>
+<p>➡️ 4 pods by micro-service ( 9 services )</p>
+<p>Then need load balancing, configuration, monitoring, alerting, logging …</p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1>C2 model</h1>
+<p><img src="SMAC%20dependency%20graph%20-%20C2%20model.png" alt="" style="height:15em"></p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1>Code Changes</h1>
+<h1><img src="Go_logo_aqua.png" class="v-align-text-bottom" style="height:1em;margin: 0 15px"> to <img src="dotnet.png" class="v-align-text-bottom" style="height:1em;margin: 0 15px"></h1>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1>What about typing ?</h1>
+
+            </section>
+    
+
+
+
+    
+        <section data-state="layout-bg50r" data-background-image="dribbble-machucado1.webp">
+            
+            <!-- .slide: data-state="layout-bg50r" data-background-image="dribbble-machucado1.webp" -->
+<p><strong>Avoid primitive obsession</strong></p>
+<p>So many string everywhere 🥵</p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1><img src="Go_logo_aqua.png"  style="height:.7em; margin: 0 15px"> use string</h1>
+<pre><code class="language-go">// Usecase represents the sale's usecase interface
+type Usecase interface {
+	CheckRules(ctx context.Context, saleVersionID string, checkTypes []model.CheckRuleType) ([]*model.CheckRule, error)
+	CreateSale(ctx context.Context, sale *model.Sale) (*model.Sale, error)
+	CreateSaleVersion(ctx context.Context, saleID, name, fromVersionID string, isPublish bool) (*model.Version, error)
+	GetSale(ctx context.Context, id string) (*model.Sale, error)
+	GetSaleByVersionID(ctx context.Context, versionID string) (*model.Sale, error)
+	UpdateSale(ctx context.Context, sale *model.Sale) error
+	PublishSaleVersion(ctx context.Context, versionID string) (bool, error)
+	ResetSaleVersion(ctx context.Context, versionID string, scopes []model.ResetScope) (*model.Version, error)
+	NotifyIfSaleReady(ctx context.Context, versionID string) error
+	HandleCampaignDateChanges(ctx context.Context, campaignCode string, channels []common_kafka.CampaignChannel) error
+}
+
+</code></pre>
+<p><em>In GO we can use <a href="https://github.com/google/uuid">https://github.com/google/uuid</a></em></p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1><img src="dotnet.png"  style="height:.7em; margin: 0 15px"> got Guid</h1>
+<pre><code class="language-csharp">public interface ISaleUsecase
+{
+    Task&lt;CheckRule[]&gt; CheckRules(Guid saleVersionID, CheckRuleType[] checkTypes);
+    Task&lt;Models.Sale&gt; CreateSale(Models.Sale sale);
+    Task&lt;DomainVersion&gt; CreateSaleVersion(string saleID, string name, Guid? fromVersionId, bool isPublish);
+    Task&lt;Models.Sale?&gt; GetSale(string saleID);
+    Task&lt;Models.Sale[]?&gt; GetSales(string[] saleIDs);
+    Task&lt;Models.Sale?&gt; GetSaleByVersionId(Guid versionId);
+    Task&lt;int&gt; UpdateSale(Models.Sale sale);
+    Task&lt;DomainVersion&gt; ResetSaleVersion(Guid versionID, ResetScope[] scopes);
+    Task PublishSaleVersion(Guid versionID);
+    Task NotifyIfSaleReady(Guid versionID);
+    Task NotifyOnSaleCreated(string id, Guid versionId, string name, string campaignCode, CountryCode countryCode);
+    Task HandleCampaignDateChanges(string campaignCode, Channel[] channels);
+}
+</code></pre>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1><img src="Go_logo_aqua.png"  style="height:.7em; margin: 0 15px"> use more string !</h1>
+<pre><code class="language-go">languageByCountryCode = map[string][]string{
+	&quot;at&quot;: {&quot;de&quot;},
+	&quot;be&quot;: {&quot;en&quot;, &quot;nl&quot;, &quot;fr&quot;},
+	&quot;ch&quot;: {&quot;fr&quot;, &quot;de&quot;},
+	&quot;de&quot;: {&quot;de&quot;},
+	&quot;dk&quot;: {&quot;da&quot;},
+	&quot;es&quot;: {&quot;es&quot;},
+	&quot;fr&quot;: {&quot;fr&quot;},
+	&quot;gb&quot;: {&quot;en&quot;},
+	&quot;it&quot;: {&quot;it&quot;},
+	&quot;lu&quot;: {&quot;en&quot;, &quot;fr&quot;},
+	&quot;nl&quot;: {&quot;en&quot;, &quot;nl&quot;},
+	&quot;pl&quot;: {&quot;pl&quot;},
+}
+</code></pre>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1><img src="dotnet.png"  style="height:.7em; margin: 0 15px"> got Enum</h1>
+<p>ENUM with JsonStringEnumConverter 💖</p>
+<pre><code class="language-csharp">/// List of handled language
+public enum Languages { da, de, en, es, fr, it, nl, pl }
+
+/// List of handled countries
+public enum CountryCode { AT, BE, CH, DE, DK, ES, FR, GB, IT, LU, NL, PL }
+
+public static readonly IDictionary&lt;Languages, string&gt; CultureByLanguage =
+	new Dictionary&lt;Languages, string&gt;
+	{
+		{ Languages.da, &quot;da-DK&quot; },
+		{ Languages.de, &quot;de-DE&quot; },
+		{ Languages.en, &quot;en-GB&quot; },
+		{ Languages.es, &quot;es-ES&quot; },
+		{ Languages.fr, &quot;fr-FR&quot; },
+		{ Languages.it, &quot;it-IT&quot; },
+		{ Languages.nl, &quot;nl-NL&quot; },
+		{ Languages.pl, &quot;pl-PL&quot; }
+	};
+
+</code></pre>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1><img src="dotnet.png"  style="height:.7em; margin: 0 15px"> got cultureinfo</h1>
+<p><em>But we don’t use it anymore for this usecase</em></p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1><img src="Go_logo_aqua.png"  style="height:.7em; margin: 0 15px"> use interface{}</h1>
+<pre><code data-trim="" data-line-numbers="5" class="language-go">jsonStruct := struct {
+		Code             string            `json:&quot;code&quot;`
+		Name             string            `json:&quot;name&quot;`
+		NameTranslations map[string]string `json:&quot;translations&quot;`
+		Value            interface{}       `json:&quot;value&quot;`  // can be any thing. Really ?
+		ValueCode        string            `json:&quot;valueCode&quot;`
+		Properties       []*Property       `json:&quot;properties&quot;`
+	}{}
+</code></pre>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1><img src="dotnet.png"  style="height:.7em; margin: 0 15px">  use generic</h1>
+<pre><code data-trim="" data-line-numbers="|4|14|12" class="language-csharp">public record Property(
+    string Code,
+    string Name,
+    I18nString NameTranslations,
+    string? Value,
+    I18nString? ValueTranslations,
+    string ValueCode,
+    bool AllowMultiplicity,
+    Property[] Properties
+);
+
+public class I18NObject&lt;T&gt;{}
+
+public class I18nString : I18NObject&lt;string&gt;{}
+</code></pre>
+<p><em>Yes, GO has this now…</em></p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1><img src="Go_logo_aqua.png"  style="height:.7em; margin: 0 15px"> use map with empty value 🤐</h1>
+<pre><code class="language-go">distinctMediaIDs := make(map[string]struct{})
+//....
+distinctMediaIDs[m.ID] = struct{}{}
+</code></pre>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1><img src="dotnet.png"  style="height:.7em; margin: 0 15px"> use HashSet</h1>
+<pre><code class="language-csharp">HashSet&lt;string&gt; distinctMediaIDs = new();
+//....
+distinctMediaIDs.Add(m.Id);
+</code></pre>
+<aside class="notes"> Overlaps, IsSubsetOf , IsSupersetOf</aside>
+
+            </section>
+    
+
+
+
+    
+        <section data-state="layout-bg50r" data-background-image="gophercises_jumping.gif">
+            
+            <!-- .slide: data-state="layout-bg50r" data-background-image="gophercises_jumping.gif" -->
+<h1>loop for ever</h1>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1><img src="Go_logo_aqua.png"  style="height:.7em; margin: 0 15px"> use for loop everywhere</h1>
+<pre><code data-trim="" data-line-numbers="|3|9|" class="language-go">func (uc *usecase) GetDistinctNGPCodesFromArticles(ctx context.Context, articles []*model.Article) []string {
+	distinctNGPCodes := make(map[string]struct{})   // &lt;-- struct {}  ???
+	for _, aa := range articles {
+		distinctNGPCodes[aa.NgpCode] = struct{}{}  // &lt;--  WHAT ??
+	}
+
+	// Slice of NGP codes
+	ngpCodes := []string{}
+	for ngpCode := range distinctNGPCodes {    // &lt;-- one more loop
+		ngpCodes = append(ngpCodes, ngpCode)
+	}
+
+	return ngpCodes
+}
+</code></pre>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1><img src="dotnet.png"  style="height:.7em; margin: 0 15px"> got linq</h1>
+<pre><code class="language-csharp">public string[] GetDistinctNGPCodesFromArticles(Models.Article[] articles) =&gt; 
+	articles
+		.Select(x =&gt; x.NgpCode)
+		.Distinct()
+		.ToArray();
+</code></pre>
+<p><em>LINQ in go =&gt; <a href="https://godoc.org/github.com/ahmetb/go-linq">https://godoc.org/github.com/ahmetb/go-linq</a></em></p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1><img src="Go_logo_aqua.png"  style="height:.7em; margin: 0 15px"> use Tuple</h1>
+<pre><code class="language-go">func (uc *usecase) GetLocalizedTemplates(/*..*/) 
+ (map[string][]*model.TemplateSection, map[string][]*model.TemplateSection, error) 
+ {}
+</code></pre>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1><img src="dotnet.png"  style="height:.7em; margin: 0 15px"> got named tuple !</h1>
+<pre><code class="language-csharp">(Dictionary&lt;string, TemplateSection[]&gt; sizeLabelTemplates,
+ Dictionary&lt;string, TemplateSection[]&gt; nameTemplates) =
+            await _ngpSettingsUsecase.GetLocalizedTemplates(aggregationNgpCodes, countryCode);
+</code></pre>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1><img src="dotnet.png"  style="height:.7em; margin: 0 15px"> got Expression body</h1>
+<p>Easy to reduce code to one line</p>
+<pre><code class="language-csharp">public Task&lt;IEnumerable&lt;Models.Sale&gt;&gt; GetAllSalesAsync() =&gt; QueryAllAsync&lt;Models.Sale&gt;();
+</code></pre>
+
+            </section>
+    
+
+
+
+    
+        <section data-state="layout-bg50r" data-background-image="gorun2.png">
+            
+            <!-- .slide: data-state="layout-bg50r" data-background-image="gorun2.png" -->
+<h1>Async</h1>
+<h1>Concurrent</h1>
+<h1>Parallel</h1>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2>🤔</h2>
+<h2>Is Go routine really easy ?</h2>
+<p><em>not so sure in long term.</em></p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1><img src="Go_logo_aqua.png"  style="height:.7em; margin: 0 15px"> goroutine for paralism</h1>
+<pre><code class="language-go">pc := make(chan *Pair, len(inputs))
+// Generate identifier for each input
+for k, i := range inputs {
+
+	// One goroutine per input in order to speed it up
+	go func(key string, meta map[string]string, isRandom bool) {
+		identifier, err := uc.generateIdentifier(ctx, meta, isRandom)
+		if err != nil {
+			ec &lt;- err
+			return
+		}
+
+		pc &lt;- &amp;Pair{
+			Key:   key,
+			Value: identifier,
+		}
+	}(k, i.GetMeta(), i.GetIsRandom())
+}
+</code></pre>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1><img src="dotnet.png"  style="height:.7em; margin: 0 15px"> use Task and TPL</h1>
+<pre><code class="language-csharp">// System.Threading.Tasks.Parallel
+Parallel.ForEachAsync(inputs, async (k, i) =&gt; { .... });
+
+// PLINQ
+inputs.AsParallel().Select(x =&gt; {....} );
+
+// or create list of task and wait
+await Task.WhenAll(tasks);
+</code></pre>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1><img src="dotnet.png"  style="height:.7em; margin: 0 15px"> use Task for all I/O</h1>
+<pre><code class="language-csharp">// DATABASE
+public interface ISaleRepository
+{
+    Task&lt;string&gt; CreateSaleAsync(Models.Sale sale);
+    Task&lt;Models.Sale?&gt; FindSaleAsync(Expression&lt;Func&lt;Models.Sale, bool&gt;&gt; where);
+}
+
+// WEB CLIENT
+public interface IPimClient
+{
+    Task&lt;Product[]?&gt; GetProductsByOperationCodeAsync(string operationCode, string language);
+    Task&lt;Article[]?&gt; GetArticlesAsync(string[] articleIDs);
+    Task&lt;Article[]&gt; BulkGetArticlesAsync(Guid[] articleIDs, bool withTranslations);
+}
+</code></pre>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1>Lines of  code</h1>
+<table>
+<thead>
+<tr>
+<th>Language</th>
+<th style="text-align:right">Lines of code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C#</td>
+<td style="text-align:right"><s>18 008</s></td>
+</tr>
+<tr>
+<td>C#</td>
+<td style="text-align:right">20 079</td>
+</tr>
+<tr>
+<td>Go</td>
+<td style="text-align:right">133 768</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>We saved <strong>113 689</strong> LOC
+<br/>*test included</p>
+</blockquote>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1>What do we use ?</h1>
+<p>Libraries, nuget …</p>
+
+            </section>
+    
+
+
+
+    
+        <section data-state="layout-bg50r" data-background-image="hotchocolate.svg">
+            
+            <!-- .slide: data-state="layout-bg50r" data-background-image="hotchocolate.svg" -->
+<h1>GraphQL</h1>
+<p>We should <strong>HotChocolate</strong></p>
+<ul>
+<li>Very performent</li>
+<li>Easy to use</li>
+<li>Annotation-based / Code-first / Schema-first</li>
+<li>Subscription with WebSocket</li>
+<li>Awesome with EF core</li>
+<li>Banana cupcake</li>
+</ul>
+<aside class="notes">
+GraphQL the subscriptions
+<br/>- the code from go is totally weird
+<br/>- the channel, the observer, etcetc
+<br/>- in hotchocolate is, addsubscriptions , addwebsockets, and add the two methods for the - dynamic topic</aside>
+
+            </section>
+    
+
+
+
+    
+        <section data-fullscreen data-background-image="bananacupcake.png">
+            
+            <!-- .slide: data-fullscreen data-background-image="bananacupcake.png" -->
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1>Data Access Layer</h1>
+<p>We use a ORM : RepoDB</p>
+<div class="grid" style="--cols-xl: 3;--cols-md: 3;--cols-xs: 3;">
+<div>
+<ul>
+<li>Performant</li>
+<li>easy to use</li>
+<li>Work on many DBMS</li>
+<li>A lot of feature (Bulk/Batch/Caching)</li>
+</ul>
+</div>
+<div style="--col-xl: span 2;--col-md: span 2;--col-xs span 2">
+<img src="repodb.svg" >
+</div>
+</grid>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>I also think about using <strong>EF core</strong></h3>
+<p>Cause it is more flexible and have great feature on PG jsonb</p>
+<p><img src="efcore-pgjson.png" alt=""></p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1>API client</h1>
+<p>We use <strong>Refit</strong></p>
+<ul>
+<li>automatic type-safe REST library</li>
+</ul>
+<p><em>(Heavily inspired by Square’s Retrofit library)</em></p>
+<pre><code class="language-csharp">public record TechnicalSheetsByFamily(int FamilyId, string Ft, string Subject);
+
+public interface ISpotApi
+{
+    [Get(&quot;/api/v2/campaigns/events/{site}/technicalSheets/{familyId}&quot;)]
+    Task&lt;ApiResponse&lt;TechnicalSheetsByFamily[]&gt;&gt;GetTechnicalSheetsByFamilyIdAndSite(string site, int familyId);
+}
+</code></pre>
+<pre><code class="language-csharp">// Program.cs
+builder.Services.AddRefitClient&lt;ISpotApi&gt;(refitSettings).ConfigureHttpClient(c=&gt;
+{
+    c.BaseAddress = new Uri(configuration.GetValue&lt;string&gt;(&quot;Spot:Host&quot;));
+    c.DefaultRequestHeaders.Add(&quot;apikey&quot;, configuration.GetValue&lt;string&gt;(&quot;Spot:Apikey&quot;));
+});
+
+
+</code></pre>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1>Refit</h1>
+<ul>
+<li>Only defined interface</li>
+<li>Use Source Generator</li>
+<li>Use Httpclient</li>
+<li>Easy to configure, add headers and bearer</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1>Notification System</h1>
+<p>We replace <strong>Kafka</strong> by <strong>MediatR</strong></p>
+<ul>
+<li>In-process messaging with no dependencies.</li>
+<li>Use generics</li>
+<li>Very easy to migrate using same message</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1>MediatR</h1>
+<pre><code class="language-csharp">public class SaleVersionCreatedHandler : INotificationHandler&lt;SaleVersionCreated&gt;
+{
+    private readonly ICatalogUsecase _catalogUsecase;
+
+    public SaleVersionCreatedHandler(ICatalogUsecase catalogUsecase) =&gt;
+		_catalogUsecase = catalogUsecase;
+
+    public Task Handle(SaleVersionCreated notification, ct cancellationToken) =&gt;
+	    _catalogUsecase.CloneCatalogTree(
+			notification.VersionId, 
+			notification.FromVersionId, 
+			notification.IsPublish);
+}
+</code></pre>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2>Conclusion</h2>
+<ul>
+<li>it’s possible</li>
+<li>It take times ! 3 months here</li>
+<li>We know better the code and how SMAC is working</li>
+<li>Evolution and support should be easier now</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2>What’s next</h2>
+<ul>
+<li>we still need to do a lot of clean code</li>
+<li>Create a strong Domain model without dependency</li>
+<li>Continue to use more (domain)Events</li>
+</ul>
+<p>yes it’s clean architeture 😜</p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1>QA</h1>
+<h1 class="text-center">🙋🏻‍♂️🙋🏻‍♀️❔</h1>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1>THANK</h1>
+
+            </section>
+    
+
+
+    </div>
+
+
+  </div>
+
+  <div class="line top"></div>
+  <div class="line bottom"></div>
+  <div class="line left"></div>
+  <div class="line right"></div>
+
+  <script src="libs/reveal.js/4.3.1/reveal.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/notes/notes.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/markdown/markdown.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/highlight/highlight.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/math/math.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/fullscreen/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/animate/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/animate/svg.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/Chart.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3/d3.v3.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3.patch.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3/queue.v1.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3/topojson.v1.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/function-plot.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/customcontrols/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/embed-tweet/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/chart/chart.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/chart/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/verticator/verticator.js"></script>
+
+<script src="libs/reveal.js/4.3.1/plugin/zoom/zoom.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/search/search.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/menu/menu.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/chalkboard/plugin.js"></script>
+
+<!--	<script src="libs/reveal.js/4.3.1/plugin/audio-slideshow/plugin.js"></script>  -->
+<!--	<script src="libs/reveal.js/4.3.1/plugin/audio-slideshow/recorder.js"></script>-->
+<!--	<script src="libs/reveal.js/4.3.1/plugin/audio-slideshow/RecordRTC.js"></script>-->
+
+  
+
+<script>
+  const printPlugins = [
+      RevealNotes,
+      RevealHighlight,
+      RevealMath.MathJax3,
+      RevealAnimate,
+      RevealChalkboard, 
+			RevealEmbedTweet,
+			RevealChart,
+		];
+
+		const plugins =  [...printPlugins,
+		RevealZoom, 
+		RevealSearch, 
+				RevealMarkdown, 
+				RevealMenu, 
+				RevealFullscreen,
+				RevealAnything,
+				//RevealAudioSlideshow,
+				//RevealAudioRecorder,
+				RevealCustomControls, 
+				// poll
+				// question
+				// seminar
+				Verticator 
+				 ]
+
+
+		// Also available as an ES module, see:
+		// https://revealjs.com/initialization/
+		Reveal.initialize({
+			controls: false,
+      controlsTutorial: true,
+      controlsLayout: 'bottom-right',
+      controlsBackArrows: 'faded',
+      progress: true,
+      slideNumber: false,
+      //#showSlideNumber "all" "print" "speaker"
+      hash: true, //# hash: false,
+      //# respondToHashChanges: true,
+      //# history: false,
+      keyboard: true,
+      //#keyboardCondition: null,
+      overview: true,
+      center: true,
+      touch: true,
+      loop: false,
+      rtl: false,
+      //#navigationMode: 'default', linear grid
+      shuffle: false,
+      fragments: true,
+      fragmentInURL: false,
+      embedded: false,
+      help: true,
+      //#pause: true
+      showNotes: false,
+      autoPlayMedia: false, // TODO fix this to a nullable value
+      //#preloadIframes: null. true false
+      //#autoAnimate: true
+      //#autoAnimateMatcher: null,
+      //#autoAnimateEasing: 'ease',
+      //autoAnimateDuration: 1.0,
+      //#autoAnimateUnmatched: true
+      //#autoAnimateStyles: []
+      autoSlide: 0, // TODO fix this to a falseable value
+      autoSlideStoppable: true,
+      autoSlideMethod: '0',
+      defaultTiming: 120,
+      mouseWheel: false,
+      //#previewLinks: false
+      //#postMessage: true, // TODO : this can cause issues with the vscode api ???
+      //#postMessageEvents: false,
+      //#focusBodyOnPageVisibilityChange: true,
+      transition: 'slide',
+      transitionSpeed: 'default',
+      backgroundTransition: 'fade',
+      //#pdfMaxPagesPerSlide: Number.POSITIVE_INFINITY,
+      //#pdfSeparateFragments: true,
+      //#pdfPageHeightOffset: -1,
+      viewDistance: 3,
+      //#mobileViewDistance: 2,
+      display: 'block',
+      //#hideInactiveCursor: true,
+      //#hideCursorTime: 5000
+
+      // Parallax Background
+      parallaxBackgroundImage: '',
+      parallaxBackgroundSize: '',
+      parallaxBackgroundHorizontal: 0,
+      parallaxBackgroundVertical: 0,
+
+      //Presentation Size
+      width: 1080,
+			height: 700,
+			margin: 0.09,
+      minScale: 0.2,
+      maxScale: 2,
+      disableLayout: false,
+
+      audio: {
+        prefix: 'audio/', // audio files are stored in the "audio" folder
+        suffix: '.ogg', // audio files have the ".ogg" ending
+        textToSpeechURL: null, // the URL to the text to speech converter
+        defaultNotes: false, // use slide notes as default for the text to speech converter
+        defaultText: false, // use slide text as default for the text to speech converter
+        advance: 0, // advance to next slide after given time in milliseconds after audio has played, use negative value to not advance
+        autoplay: false, // automatically start slideshow
+        defaultDuration: 5, // default duration in seconds if no audio is available
+        defaultAudios: true, // try to play audios with names such as audio/1.2.ogg
+        playerOpacity: 0.05, // opacity value of audio player if unfocused
+        playerStyle: 'position: fixed; bottom: 4px; left: 25%; width: 50%; height:75px; z-index: 33;', // style used for container of audio controls
+        startAtFragment: false, // when moving to a slide, start at the current fragment or at the start of the slide
+      },
+      
+      chalkboard: { // font-awesome.min.css must be available
+        //src: "chalkboard/chalkboard.json",
+        storage: "chalkboard-demo",
+      },
+      
+			customcontrols: {
+					controls: [
+      						{
+						  id: 'toggle-overview',
+						  title: 'Toggle overview (O)',
+						  icon: '<i class="fa fa-th"></i>',
+						  action: 'Reveal.toggleOverview();'
+						}
+						,
+      {
+        icon: '<i class="fa fa-pen-square"></i>',
+        title: 'Toggle chalkboard (B)',
+        action: 'RevealChalkboard.toggleChalkboard();'
+      },
+      {
+        icon: '<i class="fa fa-pen"></i>',
+        title: 'Toggle notes canvas (C)',
+        action: 'RevealChalkboard.toggleNotesCanvas();'
+      }
+      
+				]
+			},
+			chart: {
+					defaults: { 
+						color: 'lightgray', // color of labels
+						scale: { 
+							beginAtZero: true, 
+							ticks: { stepSize: 1 },
+							grid: { color: "lightgray" } , // color of grid lines
+						},
+					},
+					line: { borderColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ], "borderDash": [ [5,10], [0,0] ] }, 
+					bar: { backgroundColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ]}, 
+					pie: { backgroundColor: [ ["rgba(0,0,0,.8)" , "rgba(220,20,20,.8)", "rgba(20,220,20,.8)", "rgba(220,220,20,.8)", "rgba(20,20,220,.8)"] ]},
+					radar: { borderColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ]}, 
+			},
+			math: {
+				mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+				config: 'TeX-AMS_HTML-full',
+				// pass other options into `MathJax.Hub.Config()`
+				TeX: { Macros: { RR: "{\\bf R}" } }
+				},
+				anything: [ 
+				{
+		className: "plot",
+		defaults: {width:500, height: 500, grid:true},
+		initialize: (function(container, options){ options.target = "#"+container.id; functionPlot(options) })
+	 },
+	 {
+		className: "chart",  
+		initialize: (function(container, options){ container.chart = new Chart(container.getContext("2d"), options);  })
+	 },
+	 {
+		className: "anything",
+		initialize: (function(container, options){ if (options && options.initialize) { options.initialize(container)} })
+	 },
+					],
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: (window.location.search.match(/print-pdf/gi) ? printPlugins : plugins ) 
+		});
+			
+
+
+	    // Change chalkboard theme : 
+		function changeTheme(input) {
+			var config = {};
+			config.theme = input.value;
+			Reveal.getPlugin("RevealChalkboard").configure(config);
+			input.blur();
+		}
+
+		// // Handle the message inside the webview
+        // window.addEventListener('message', event => {
+
+        //     const message = event.data; // The JSON data our extension sent
+
+        //     switch (message.command) {
+        //         case 'refactor':
+        //             Reveal.toggleHelp();
+        //     }
+        // });
+
+		if (window.location.search.match(/print-pdf-now/gi)) {
+      		setTimeout(() => {
+				window.print();
+			  }, 2500);
+			
+    }
+</script>
+
+</body>
+
+</html>
