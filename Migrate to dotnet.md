@@ -23,7 +23,7 @@ css:
 
 ![](dotnet-surf.png){style=height:200px}
 
-<grid>
+
 
 ---
 
@@ -43,7 +43,21 @@ Dev .NET since 2001
 <div class="text-center" >
 <img class="avatar" alt="vincent" src="Vincent4.gif" width="250" height="250" />
 <div>
-<grid>
+
+
+---
+
+# What is SMAC app ?
+
+- **Backoffice** APP to manage merchandising on sale {.fragment}
+- **Frontend** done using *React* / *Typescript* {.fragment}
+- **Backend** done Go microservices using *GRPC* and *Kafka* {.fragment}
+
+
+---
+
+<!-- .slide: data-background-image="smac.png" data-background-size="contain"  -->
+
 
 ---
 
